@@ -13,16 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hello Books',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: const MyHomePage(title: 'Hello Books App'),
     );
@@ -54,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       index = index == (greetings.length - 1) ? 0 : index + 1;
     });
   }
+
+  bool isLocal = true;
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +82,28 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            ToggleButtons(
+              children: const [
+                Icon(Icons.airplanemode_off),
+                Icon(Icons.airplanemode_on),
+                ],
+              isSelected: [!isLocal, isLocal],
+              onPressed: (int index) {
+                setState(() {
+                  isLocal = !isLocal;
+                });
+              },
+            ),
             Text(
               greetings[index],
               style: Theme.of(context).textTheme.headline4,
             ),
+            Container(
+              width: 300 * 1.1,
+              height: 500 * 1.1,
+              padding: const EdgeInsets.all(20.0),
+              child: isLocal ? loadLocalImage():loadInternetImage(),
+            )
           ],
         ),
       ),
@@ -102,5 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.insert_emoticon),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Widget loadLocalImage() {
+    return Image.asset("assets/book_cover.jpg");
+  }
+
+  Widget loadInternetImage() {
+    return Image.network("https://m.media-amazon.com/images/I/51zSz5E2vAL.jpg");
   }
 }
