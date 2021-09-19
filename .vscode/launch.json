@@ -1,0 +1,47 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "hello_books",
+      "cwd": "hello_books",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "hello_books (profile mode)",
+      "cwd": "hello_books",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "stocks",
+      "cwd": "stocks",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "stocks (profile mode)",
+      "cwd": "stocks",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "testapp",
+      "cwd": "testapp",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "testapp (profile mode)",
+      "cwd": "testapp",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    }
+  ]
+}

@@ -11,14 +11,15 @@ class AppState extends ChangeNotifier {
 
   List<Stock> get favoriteStocks => _stocks.where((s) => s.isFavorite).toList();
 
-  Stock getStock(int id) => _stocks.singleWhere((v) => v.id == id);
+  Stock getStock(String symbol) =>
+      _stocks.singleWhere((v) => v.symbol == symbol);
 
   List<Stock> searchStocks(String terms) => _stocks
       .where((s) => s.longName.toLowerCase().contains(terms.toLowerCase()))
       .toList();
 
-  void setFavorite(int id, bool isFavorite) {
-    var stock = getStock(id);
+  void setFavorite(String symbol, bool isFavorite) {
+    var stock = getStock(symbol);
     stock.isFavorite = isFavorite;
     notifyListeners();
   }

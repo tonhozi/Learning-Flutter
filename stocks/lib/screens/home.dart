@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:stocks/screens/list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key, this.restorationId}) : super(key: key);
@@ -13,43 +14,110 @@ class HomeScreen extends StatelessWidget {
       child: CupertinoTabScaffold(
         restorationId: 'scaffold',
         tabBar: CupertinoTabBar(
-          items: const [
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.book_solid), label: 'Articles'),
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.eye_solid), label: 'Views'),
+                icon: Icon(CupertinoIcons.chart_bar_square)),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.search)),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings)),
           ],
         ),
         tabBuilder: (context, index) {
-          return CupertinoTabView(
-            builder: (context) {
-              return CupertinoPageScaffold(
-                navigationBar: CupertinoNavigationBar(
-                  middle: (index == 0)
-                      ? const Text('Articles')
-                      : const Text('Views'),
-                ),
-                child: Center(
-                  child: CupertinoButton(
-                    child: Text(
-                      'This is tab #$index',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .actionTextStyle
-                          .copyWith(fontSize: 32),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        CupertinoPageRoute(builder: (context) {
-                          return DetailScreen(index == 0 ? 'Article' : 'Views');
-                        }),
-                      );
-                    },
-                  ),
-                ),
+          late final CupertinoTabView returnValue;
+          switch (index) {
+            case 0:
+              returnValue = CupertinoTabView(
+                builder: (context) {
+                  return const ListScreen(restorationId: 'list');
+                },
               );
-            },
-          );
+              break;
+            case 1:
+              returnValue = CupertinoTabView(builder: (context) {
+                return CupertinoPageScaffold(
+                  navigationBar: const CupertinoNavigationBar(
+                    middle: Text('Performance'),
+                  ),
+                  child: Center(
+                    child: CupertinoButton(
+                      child: Text(
+                        'This is tab #$index',
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .actionTextStyle
+                            .copyWith(fontSize: 32),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(builder: (context) {
+                            return DetailScreen(
+                                index == 0 ? 'Article' : 'Views');
+                          }),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              });
+              break;
+            case 2:
+              returnValue = CupertinoTabView(builder: (context) {
+                return CupertinoPageScaffold(
+                  navigationBar: const CupertinoNavigationBar(
+                    middle: Text('Search'),
+                  ),
+                  child: Center(
+                    child: CupertinoButton(
+                      child: Text(
+                        'This is tab #$index',
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .actionTextStyle
+                            .copyWith(fontSize: 32),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(builder: (context) {
+                            return DetailScreen(
+                                index == 0 ? 'Article' : 'Views');
+                          }),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              });
+              break;
+            case 3:
+              returnValue = CupertinoTabView(builder: (context) {
+                return CupertinoPageScaffold(
+                  navigationBar: const CupertinoNavigationBar(
+                    middle: Text('Settings'),
+                  ),
+                  child: Center(
+                    child: CupertinoButton(
+                      child: Text(
+                        'This is tab #$index',
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .actionTextStyle
+                            .copyWith(fontSize: 32),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(builder: (context) {
+                            return DetailScreen(
+                                index == 0 ? 'Article' : 'Views');
+                          }),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              });
+              break;
+          }
+          return returnValue;
         },
       ),
     );
