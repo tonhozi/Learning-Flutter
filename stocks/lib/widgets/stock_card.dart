@@ -9,7 +9,7 @@ class FrostyBackground extends StatelessWidget {
   const FrostyBackground({
     required this.color,
     required this.child,
-    this.intensity = 25,
+    this.intensity = 10,
   });
 
   final Color color;
@@ -93,31 +93,39 @@ class _PressableCardState extends State<PressableCard> {
 }
 
 class StockCard extends StatelessWidget {
-  const StockCard(this.stock, this.isPreferredCategory);
+  const StockCard(this.stock);
 
   /// Stocks to be displayed by the card.
   final Stock stock;
-
-  /// Whether [stock] falls into one of user's preferred [StockCategory]s
-  final bool isPreferredCategory;
 
   Widget _buildDetails(BuildContext context) {
     final themeData = CupertinoTheme.of(context);
     return FrostyBackground(
       color: const Color(0x90ffffff),
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              stock.displayName,
-              style: Styles.cardTitleText(themeData),
+        padding: const EdgeInsets.all(7),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              child: const Icon(CupertinoIcons.home),
+              padding: const EdgeInsets.only(right: 10),
             ),
-            Text(
-              stock.symbol,
-              style: Styles.cardDescriptionText(themeData),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  stock.displayName,
+                  style: Styles.cardTitleText(themeData),
+                ),
+                Text(
+                  stock.symbol,
+                  style: Styles.cardDescriptionText(themeData),
+                ),
+              ],
             ),
+            const Spacer(),
+            const Text('10.00'),
           ],
         ),
       ),
@@ -134,15 +142,16 @@ class StockCard extends StatelessWidget {
           Semantics(
             label: 'A card background featuring ${stock.displayName}',
             child: Container(
-              height: 150,
-              // decoration: BoxDecoration(
-              // image: DecorationImage(
-              //   fit: BoxFit.cover,
-              // image: AssetImage(
-              //   veggie.imageAssetPath,
-              // ),
-              // ),
-              // ),
+              height: 120,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topLeft,
+                  image: AssetImage((stock.image != '')
+                      ? stock.image
+                      : 'assets/images/default.jpg'),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -151,6 +160,18 @@ class StockCard extends StatelessWidget {
             right: 0,
             child: _buildDetails(context),
           ),
+          Positioned(
+              top: 10,
+              right: 10,
+              child: (stock.isFavorite)
+                  ? const Icon(
+                      CupertinoIcons.heart_solid,
+                      color: CupertinoColors.systemRed,
+                    )
+                  : const Icon(
+                      CupertinoIcons.heart,
+                      color: CupertinoColors.systemRed,
+                    )),
         ],
       ),
     );

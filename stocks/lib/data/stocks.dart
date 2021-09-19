@@ -37,6 +37,7 @@ class Stock {
     required this.longName,
     required this.quoteType,
     required this.exchange,
+    required this.image,
     this.isFavorite = false,
   });
 
@@ -47,6 +48,8 @@ class Stock {
 
   /// Exchange where the stock is traded.
   final Exchange exchange;
+
+  final String image;
 
   /// Whether or not the stock has been saved to the user's favorites (i.e. marked as a favorite).
   bool isFavorite;

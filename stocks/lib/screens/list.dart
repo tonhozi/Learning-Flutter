@@ -17,12 +17,11 @@ class ListScreen extends StatelessWidget {
 
   Widget _generateStockRow(Stock stock, Preferences prefs) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: FutureBuilder<Set<QuoteType>>(
           // future: prefs.preferredCategories,
           builder: (context, snapshot) {
-        final data = snapshot.data ?? <QuoteType>{};
-        return StockCard(stock, data.contains(stock.quoteType));
+        return StockCard(stock);
       }),
     );
   }
@@ -56,22 +55,22 @@ class ListScreen extends StatelessWidget {
                             style: Styles.minorText(themeData)),
                         Text('Olá, Pedro Tonhozi',
                             style: Styles.headlineText(themeData)),
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: const Color(0xff7c94b6),
-                            border: Border.all(
-                              width: 2,
-                              color: CupertinoColors.activeOrange,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          margin: const EdgeInsets.only(top: 8.0),
-                          height: 100,
-                          constraints: const BoxConstraints.expand(
-                            height: 260.0,
-                          ),
-                        ),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     shape: BoxShape.rectangle,
+                        //     color: const Color(0xff7c94b6),
+                        //     border: Border.all(
+                        //       width: 2,
+                        //       color: CupertinoColors.activeOrange,
+                        //     ),
+                        //     borderRadius: BorderRadius.circular(12.0),
+                        //   ),
+                        //   margin: const EdgeInsets.only(top: 8.0),
+                        //   height: 100,
+                        //   constraints: const BoxConstraints.expand(
+                        //     height: 260.0,
+                        //   ),
+                        // ),
                       ],
                     ),
                   );
