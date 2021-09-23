@@ -2,19 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:stocks/data/stocks.dart';
-// import 'package:veggieseasons/screens/details.dart';
+import 'package:stocks/screens/details.dart';
 import 'package:stocks/styles.dart';
 
 class FrostyBackground extends StatelessWidget {
   const FrostyBackground({
-    required this.color,
-    required this.child,
+    this.color,
+    this.child,
     this.intensity = 10,
   });
 
-  final Color color;
+  final Color? color;
   final double intensity;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class PressableCard extends StatefulWidget {
   const PressableCard({
     required this.child,
     this.borderRadius = const BorderRadius.all(Radius.circular(5)),
-    this.upElevation = 2,
+    this.upElevation = 3,
     this.downElevation = 0,
     this.shadowColor = CupertinoColors.black,
     this.duration = const Duration(milliseconds: 100),
@@ -71,7 +71,7 @@ class _PressableCardState extends State<PressableCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() => cardIsDown = false);
+        setState(() => cardIsDown = !cardIsDown);
         widget.onPressed();
       },
       onTapDown: (details) => setState(() => cardIsDown = true),
@@ -93,10 +93,13 @@ class _PressableCardState extends State<PressableCard> {
 }
 
 class StockCard extends StatelessWidget {
-  const StockCard(this.stock);
+  const StockCard(this.stock, this.isPreferredCategory);
 
   /// Stocks to be displayed by the card.
   final Stock stock;
+
+  /// Whether [stock] falls into one of user's preferred [StockCategory]s
+  final bool isPreferredCategory;
 
   Widget _buildDetails(BuildContext context) {
     final themeData = CupertinoTheme.of(context);
@@ -135,8 +138,7 @@ class StockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PressableCard(
-      onPressed: () =>
-          {}, //DetailsScreen.show(Navigator.of(context), veggie.id),
+      onPressed: () => DetailsScreen.show(Navigator.of(context), stock.id),
       child: Stack(
         children: [
           Semantics(

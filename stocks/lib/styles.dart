@@ -1,7 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:veggieseasons/data/veggie.dart';
 
 abstract class Styles {
   static CupertinoThemeData stocksThemeData = const CupertinoThemeData(
@@ -130,36 +130,6 @@ abstract class Styles {
 
   static const Color searchIconColor = Color.fromRGBO(128, 128, 128, 1);
 
-  // static const seasonColors = <Season, Color>{
-  //   Season.winter: Color(0xff336dcc),
-  //   Season.spring: Color(0xff2fa02b),
-  //   Season.summer: Color(0xff287213),
-  //   Season.autumn: Color(0xff724913),
-  // };
-
-  // While handy, some of the Font Awesome icons sometimes bleed over their
-  // allotted bounds. This padding is used to adjust for that.
-  // static const seasonIconPadding = {
-  //   Season.winter: EdgeInsets.only(right: 0),
-  //   Season.spring: EdgeInsets.only(right: 4),
-  //   Season.summer: EdgeInsets.only(right: 6),
-  //   Season.autumn: EdgeInsets.only(right: 0),
-  // };
-
-  // static const seasonIconData = {
-  //   Season.winter: FontAwesomeIcons.snowflake,
-  //   Season.spring: FontAwesomeIcons.leaf,
-  //   Season.summer: FontAwesomeIcons.umbrellaBeach,
-  //   Season.autumn: FontAwesomeIcons.canadianMapleLeaf,
-  // };
-
-  // static const seasonBorder = Border(
-  //   top: BorderSide(color: Color(0xff606060)),
-  //   left: BorderSide(color: Color(0xff606060)),
-  //   bottom: BorderSide(color: Color(0xff606060)),
-  //   right: BorderSide(color: Color(0xff606060)),
-  // );
-
   static const uncheckedIcon = IconData(
     0xf372,
     fontFamily: CupertinoIcons.iconFont,
@@ -234,3 +204,37 @@ abstract class Styles {
       // 222222 is a random color that has low color saturation.
       ColorFilter.mode(Color(0xff222222), BlendMode.saturation);
 }
+
+// Colors
+const Color lightBackgroundColor = Color(0xFFECECEC);
+
+// Padding
+const double paddingZero = 0.0;
+const double paddingXS = 2.0;
+const double paddingS = 4.0;
+const double paddingM = 8.0;
+const double paddingL = 16.0;
+const double paddingXL = 32.0;
+
+// Margin
+const double marginZero = 0.0;
+const double marginXS = 2.0;
+const double marginS = 4.0;
+const double marginM = 8.0;
+const double marginL = 16.0;
+const double marginXL = 32.0;
+
+// Spacing
+const double spaceXS = 2.0;
+const double spaceS = 4.0;
+const double spaceM = 8.0;
+const double spaceL = 16.0;
+const double spaceXL = 32.0;
+
+// Assets
+const String stocksJsonPath = 'assets/data/stocks.json';
+const String markdownPath = 'assets/markdown/';
+
+// Routes
+const String initialRoute = '/';
+const String categoryRoute = '/category';

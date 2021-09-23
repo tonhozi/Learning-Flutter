@@ -73,15 +73,15 @@ class _RestorableAppState extends RestorableListenable<AppState> {
   @override
   AppState fromPrimitives(Object? data) {
     final appState = AppState();
-    final favorites = (data as List<dynamic>).cast<String>();
-    for (var symbol in favorites) {
-      appState.setFavorite(symbol, true);
+    final favorites = (data as List<dynamic>).cast<int>();
+    for (var id in favorites) {
+      appState.setFavorite(id, true);
     }
     return appState;
   }
 
   @override
   Object toPrimitives() {
-    return value.favoriteStocks.map((stock) => stock.symbol).toList();
+    return value.favoriteStocks.map((stock) => stock.id).toList();
   }
 }

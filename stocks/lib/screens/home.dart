@@ -124,6 +124,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ignore: todo
+// TODO: Refactor and delete code after this one
 class DetailScreen extends StatefulWidget {
   const DetailScreen(this.topic, {Key? key}) : super(key: key);
 

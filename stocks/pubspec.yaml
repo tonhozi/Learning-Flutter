@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_markdown: ^0.6.6
   font_awesome_flutter: ^9.1.0
   intl: ^0.17.0
   provider: ^6.0.0
@@ -27,6 +28,9 @@ dev_dependencies:
 
 flutter:
   assets:
+    - assets/
+    - assets/data/
+    - assets/markdown/
     - assets/images/disney.jpg
     - assets/images/tesla.jpg
     - assets/images/default.jpg

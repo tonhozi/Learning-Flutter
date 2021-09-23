@@ -1,4 +1,6 @@
-enum QuoteType {
+import 'package:flutter/cupertino.dart';
+
+enum StockCategory {
   etf,
   brd,
   drn,
@@ -14,43 +16,53 @@ enum Exchange {
   outra,
 }
 
-const Map<QuoteType, String> quoteTypeNames = {
-  QuoteType.etf: 'ETF',
-  QuoteType.brd: 'BRD',
-  QuoteType.drn: 'DRN',
-  QuoteType.preferenciaisClassesB: 'preferenciaisClassesB',
-  QuoteType.preferenciaisClassesC: 'preferenciaisClassesC',
-  QuoteType.preferenciaisClassesD: 'preferenciaisClassesD',
+const Map<StockCategory, String> stockCategoryNames = {
+  StockCategory.etf: 'ETF',
+  StockCategory.brd: 'BRD',
+  StockCategory.drn: 'DRN',
+  StockCategory.preferenciaisClassesB: 'preferenciaisClassesB',
+  StockCategory.preferenciaisClassesC: 'preferenciaisClassesC',
+  StockCategory.preferenciaisClassesD: 'preferenciaisClassesD',
 };
 
 const Map<Exchange, String> exchangeFullNames = {
-  Exchange.sao: 'B3',
-  Exchange.nyq: 'NYSE',
-  Exchange.nms: 'NasdaqGS',
-  Exchange.outra: 'mainuma',
+  Exchange.sao: 'São Paulo - B3',
+  Exchange.nyq: 'New York Stock Exchange',
+  Exchange.nms: 'Nasdaq',
+  Exchange.outra: 'Outra',
 };
 
 class Stock {
   Stock({
+    required this.id,
     required this.symbol,
     required this.displayName,
     required this.longName,
-    required this.quoteType,
+    required this.category,
     required this.exchange,
     required this.image,
+    required this.accentColor,
     this.isFavorite = false,
   });
 
+  final int id;
   final String symbol;
   final String displayName;
   final String longName;
-  final QuoteType quoteType;
+  final StockCategory category;
 
   /// Exchange where the stock is traded.
   final Exchange exchange;
 
   final String image;
 
+  /// A color value to use when constructing UI elements to match the image
+  /// found at [imageAssetPath].
+  final Color accentColor;
+
   /// Whether or not the stock has been saved to the user's favorites (i.e. marked as a favorite).
   bool isFavorite;
+
+  String? get categoryName => stockCategoryNames[category];
+  String? get exchangeName => exchangeFullNames[exchange];
 }

@@ -18,11 +18,12 @@ class ListScreen extends StatelessWidget {
   Widget _generateStockRow(Stock stock, Preferences prefs) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-      child: FutureBuilder<Set<QuoteType>>(
-          // future: prefs.preferredCategories,
+      child: FutureBuilder<Set<StockCategory>>(
+          future: prefs.preferredStocks,
           builder: (context, snapshot) {
-        return StockCard(stock);
-      }),
+            final data = snapshot.data ?? <StockCategory>{};
+            return StockCard(stock, data.contains(stock.category));
+          }),
     );
   }
 
@@ -38,7 +39,8 @@ class ListScreen extends StatelessWidget {
         final themeData = CupertinoTheme.of(context);
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
-              statusBarBrightness: MediaQuery.platformBrightnessOf(context)),
+            statusBarBrightness: MediaQuery.platformBrightnessOf(context),
+          ),
           child: SafeArea(
             bottom: false,
             child: ListView.builder(
