@@ -10,5 +10,5 @@ abstract class NumberTriviaLocalDatasource {
   /// Calls the https://numbersapo.com/random endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache);
+  Future<bool> cacheNumberTrivia(NumberTriviaModel triviaToCache);
 }

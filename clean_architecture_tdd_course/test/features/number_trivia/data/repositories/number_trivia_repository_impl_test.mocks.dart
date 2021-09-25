@@ -4,11 +4,11 @@
 
 import 'dart:async' as _i5;
 
-import 'package:clean_architecture_tdd_course/core/platform/network_info.dart'
+import 'package:clean_architecture_tdd_course/core/network/network_info.dart'
     as _i7;
-import 'package:clean_architecture_tdd_course/features/number_trivia/data/datasources/number_trivia_local_datasource.dart'
+import 'package:clean_architecture_tdd_course/features/number_trivia/data/datasources/number_local_datasource.dart'
     as _i6;
-import 'package:clean_architecture_tdd_course/features/number_trivia/data/datasources/number_trivia_remote_datasource.dart'
+import 'package:clean_architecture_tdd_course/features/number_trivia/data/datasources/number_remote_datasource.dart'
     as _i4;
 import 'package:clean_architecture_tdd_course/features/number_trivia/data/models/number_trivia_model.dart'
     as _i3;
@@ -70,11 +70,10 @@ class MockNumberTriviaLocalDatasource extends _i1.Mock
                   _FakeNumberTriviaModel_1()))
           as _i5.Future<_i3.NumberTriviaModel>);
   @override
-  _i5.Future<void> cacheNumberTrivia(_i3.NumberTriviaModel? triviaToCache) =>
+  _i5.Future<bool> cacheNumberTrivia(_i3.NumberTriviaModel? triviaToCache) =>
       (super.noSuchMethod(
           Invocation.method(#cacheNumberTrivia, [triviaToCache]),
-          returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
   String toString() => super.toString();
 }
